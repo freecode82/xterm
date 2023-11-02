@@ -9,27 +9,28 @@
 /// <reference path="../typings/xterm.d.ts"/>
 
 // Use tsc version (yarn watch)
-import { Terminal } from '../out/browser/public/Terminal';
-import { AttachAddon } from '../addons/xterm-addon-attach/out/AttachAddon';
-import { CanvasAddon } from '../addons/xterm-addon-canvas/out/CanvasAddon';
-import { FitAddon } from '../addons/xterm-addon-fit/out/FitAddon';
-import { SearchAddon, ISearchOptions } from '../addons/xterm-addon-search/out/SearchAddon';
-import { SerializeAddon } from '../addons/xterm-addon-serialize/out/SerializeAddon';
-import { WebLinksAddon } from '../addons/xterm-addon-web-links/out/WebLinksAddon';
-import { WebglAddon } from '../addons/xterm-addon-webgl/out/WebglAddon';
-import { Unicode11Addon } from '../addons/xterm-addon-unicode11/out/Unicode11Addon';
-import { LigaturesAddon } from '../addons/xterm-addon-ligatures/out/LigaturesAddon';
+//import { Terminal } from '../out/browser/public/Terminal';
+//import { AttachAddon } from '../addons/xterm-addon-attach/out/AttachAddon';
+//import { CanvasAddon } from '../addons/xterm-addon-canvas/out/CanvasAddon';
+//import { FitAddon } from '../addons/xterm-addon-fit/out/FitAddon';
+//import { SearchAddon, ISearchOptions } from '../addons/xterm-addon-search/out/SearchAddon';
+//import { SerializeAddon } from '../addons/xterm-addon-serialize/out/SerializeAddon';
+//import { WebLinksAddon } from '../addons/xterm-addon-web-links/out/WebLinksAddon';
+//import { WebglAddon } from '../addons/xterm-addon-webgl/out/WebglAddon';
+//import { Unicode11Addon } from '../addons/xterm-addon-unicode11/out/Unicode11Addon';
+//import { LigaturesAddon } from '../addons/xterm-addon-ligatures/out/LigaturesAddon';
 
 // Use webpacked version (yarn package)
-// import { Terminal } from '../lib/xterm';
-// import { AttachAddon } from 'xterm-addon-attach';
-// import { FitAddon } from 'xterm-addon-fit';
-// import { SearchAddon, ISearchOptions } from 'xterm-addon-search';
-// import { SerializeAddon } from 'xterm-addon-serialize';
-// import { WebLinksAddon } from 'xterm-addon-web-links';
-// import { WebglAddon } from 'xterm-addon-webgl';
-// import { Unicode11Addon } from 'xterm-addon-unicode11';
-// import { LigaturesAddon } from 'xterm-addon-ligatures';
+ import { Terminal } from 'xterm';
+ import { AttachAddon } from 'xterm-addon-attach';
+ import { FitAddon } from 'xterm-addon-fit';
+ import { SearchAddon, ISearchOptions } from 'xterm-addon-search';
+ import { SerializeAddon } from 'xterm-addon-serialize';
+ import { WebLinksAddon } from 'xterm-addon-web-links';
+ import { WebglAddon } from 'xterm-addon-webgl';
+ import { Unicode11Addon } from 'xterm-addon-unicode11';
+ import { LigaturesAddon } from 'xterm-addon-ligatures';
+ import { CanvasAddon } from 'xterm-addon-canvas';
 
 // Pulling in the module's types relies on the <reference> above, it's looks a
 // little weird here as we're importing "this" module

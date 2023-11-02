@@ -83,9 +83,27 @@
     "ts-loader": "^9.3.1",
     "typescript": "4.7",
     "utf8": "^3.0.0",
-    "webpack": "^5.61.0",
+    "webpack": "^5.75.0",
     "webpack-cli": "^4.9.1",
     "ws": "^8.2.3",
     "xterm-benchmark": "^0.3.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "browser": "^0.2.6",
+    "common": "^0.2.5",
+    "cookie-parser": "^1.4.6",
+    "express-session": "^1.17.3",
+    "headless": "^1.2.0",
+    "xterm": "^5.1.0",
+    "xterm-addon-attach": "^0.8.0",
+    "xterm-addon-canvas": "^0.3.0",
+    "xterm-addon-fit": "^0.7.0",
+    "xterm-addon-ligatures": "^0.6.0",
+    "xterm-addon-search": "^0.11.0",
+    "xterm-addon-serialize": "^0.9.0",
+    "xterm-addon-unicode11": "^0.5.0",
+    "xterm-addon-web-links": "^0.8.0",
+    "xterm-addon-webgl": "^0.14.0"
   }
 }

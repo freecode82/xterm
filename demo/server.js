@@ -8,6 +8,13 @@ var express = require('express');
 var expressWs = require('express-ws');
 var os = require('os');
 var pty = require('node-pty');
+const cookieParser = require('cookie-parser');
+const expressSession = require('express-session');
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
+
+const logininfo_id = 'admin';
+const logininfo_pw = 'admin';
 
 // Whether to use binary transport.
 const USE_BINARY = os.platform() !== "win32";
@@ -21,12 +28,17 @@ function startServer() {
     temporaryDisposable = {};
 
   app.use('/xterm.css', express.static(__dirname + '/../css/xterm.css'));
+  
   app.get('/logo.png', (req, res) => {
     res.sendFile(__dirname + '/logo.png');
   });
 
-  app.get('/', (req, res) => {
+  app.get('/terminal', (req, res) => {
     res.sendFile(__dirname + '/index.html');
+  });
+
+  app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/login.html');
   });
 
   app.get('/test', (req, res) => {
@@ -36,11 +48,50 @@ function startServer() {
   app.get('/style.css', (req, res) => {
     res.sendFile(__dirname + '/style.css');
   });
+ 
+  app.get('/xterm.js', (req, res) => {
+    if(!req.session.user) {
+      console.log('not loin');
+      res.redirect('/');
+    }
+
+    res.sendFile(__dirname + '../../node_modules/xterm/lib/xterm.js');
+  });
+
+  app.post('/login', jsonParser, (req, res) => {
+    const {username, password} = req.body;
+    
+    if(req.session.user) {
+      console.log("already login");
+      res.redirect('/terminal');
+    } else {
+      if(username == logininfo_id && password == logininfo_pw) {
+        req.session.user = 
+          {
+            id: username,
+            name: username,
+            authorized: true
+          };
+        res.writeHead(200,{"Content-Type":"text/html;characterset=utf8"});
+        res.write('<h1>Login Success</h1>');
+        res.write('<a href="/terminal">Move Terminal</a>');
+        res.end();
+      } else {
+        console.log("login failed");
+        res.redirect("/");
+      }
+    }
+  });
 
   app.use('/dist', express.static(__dirname + '/dist'));
   app.use('/src', express.static(__dirname + '/src'));
 
   app.post('/terminals', (req, res) => {
+    if(!req.session.user) {
+      console.log('not login');
+      res.redirect('/');
+    }
+
     const env = Object.assign({}, process.env);
     env['COLORTERM'] = 'truecolor';
     var cols = parseInt(req.query.cols),
@@ -160,6 +211,20 @@ function startServer() {
       console.log('Closed terminal ' + term.pid);
       // Clean things up
       delete terminals[term.pid];
+
+      console.log('auto logout');
+      if(req.session.user) {
+        req.session.destroy(
+          function(err) {
+            if(err) {
+              console.log('session delete error');
+            }
+            console.log('sesson delete success');
+          }
+        );
+      } else {
+        console.log('status of not login');
+      }
     });
   });
 

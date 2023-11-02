@@ -226,3 +226,4 @@ If you contribute code to this project, you implicitly allow your code to be dis
 Copyright (c) 2017-2022, [The xterm.js authors](https://github.com/xtermjs/xterm.js/graphs/contributors) (MIT License)<br>
 Copyright (c) 2014-2017, SourceLair, Private Company ([www.sourcelair.com](https://www.sourcelair.com/home)) (MIT License)<br>
 Copyright (c) 2012-2013, Christopher Jeffrey (MIT License)
+# xterm
