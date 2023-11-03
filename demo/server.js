@@ -28,7 +28,12 @@ function startServer() {
     temporaryDisposable = {};
 
   app.use('/xterm.css', express.static(__dirname + '/../css/xterm.css'));
-  
+  app.use(expressSession({
+    secret: 'sdfjasd;fjkaldjkfad;fjkadfjlj',
+    resave: true,
+    saveUninitialized:true
+  }));
+
   app.get('/logo.png', (req, res) => {
     res.sendFile(__dirname + '/logo.png');
   });
