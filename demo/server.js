@@ -28,6 +28,13 @@ function startServer() {
     temporaryDisposable = {};
 
   app.use('/xterm.css', express.static(__dirname + '/../css/xterm.css'));
+  app.use(cookieParser());
+  app.use(expressSession({
+    secret: 'xtermusage',       
+    resave: true,
+    saveUninitialized:true
+}));
+ 
   
   app.get('/logo.png', (req, res) => {
     res.sendFile(__dirname + '/logo.png');
